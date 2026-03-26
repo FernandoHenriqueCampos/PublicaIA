@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fernando Henrique | AI Solutions</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="main-header">
+        <div class="header-container">
+            <a href="#" class="brand-logo">FH<span>.</span></a>
+            <div class="nav-menu">
+                <a href="#about">About</a>
+                <a href="#generate">Lab</a>
+                <a href="#" class="nav-cta">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-bg-glow"></div>
+        <h1 class="name-title">FERNANDO<br><span>HENRIQUE</span></h1>
+        <p class="tagline">Next-Gen Content Automation & Design</p>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title"><i class="bi bi-person-badge"></i> The Vision</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I am <strong>Fernando Henrique</strong>. This project explores the intersection of human creativity and artificial intelligence. My goal is to streamline how brands communicate by automating the design process through intelligent prompting.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <span class="stat-num">90%</span>
+                        <span class="stat-desc">Friction Reduction</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section workflow-section section-compact">
+        <div class="container">
+            <h2 class="section-title"><i class="bi bi-diagram-3-fill"></i> System Architecture</h2>
+            
+            <div class="workflow-grid">
+                <div class="flow-block">
+                    <div class="flow-icon"><i class="bi bi-browser-chrome"></i></div>
+                    <div class="flow-content">
+                        <h3>Front-end</h3>
+                        <p>User inputs prompt via <code>fetch()</code>.</p>
+                    </div>
+                </div>
+
+                <i class="bi bi-arrow-right flow-arrow"></i>
+
+                <div class="flow-block">
+                    <div class="flow-icon"><i class="bi bi-hdd-network"></i></div>
+                    <div class="flow-content">
+                        <h3>Node.js API</h3>
+                        <p>Express coordinates the AI pipeline.</p>
+                    </div>
+                </div>
+
+                <i class="bi bi-arrow-right flow-arrow"></i>
+
+                <div class="flow-block">
+                    <div class="flow-icon"><i class="bi bi-stars"></i></div> 
+                    <div class="flow-content">
+                        <h3>Gemini AI</h3>
+                        <p>Generates marketing context and JSON.</p>
+                    </div>
+                </div>
+
+                <i class="bi bi-arrow-right flow-arrow"></i>
+
+                <div class="flow-block">
+                    <div class="flow-icon"><i class="bi bi-magic"></i></div>
+                    <div class="flow-content">
+                        <h3>Hugging Face</h3>
+                        <p>Stable Diffusion XL renders the image.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="generate" class="section generator-section">
+        <div class="container">
+            <h2 class="section-title"><i class="bi bi-terminal-fill"></i> AI Prompt Lab</h2>
+            <div class="prompt-box">
+                <div class="input-wrapper">
+                    <i class="bi bi-stars"></i>
+                    <input type="text" id="user-input" placeholder="Type your brand idea (e.g., McDonald's Mac & Cheese)...">
+                    <button class="btn-generate" onclick="generatePost()">
+                        Run AI <i class="bi bi-play-fill"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="response-container" id="response-box">
+                <div class="status-indicator">
+                    <i class="bi bi-layer-forward"></i>
+                    <span id="status-text">System Ready...</span>
+                </div>
+                <div class="ai-output" id="output-content"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

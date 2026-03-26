@@ -1,0 +1,363 @@
+:root {
+    --bg-dark: #050505;
+    --accent: #b659ff; /* Purple from your image */
+    --accent-blue: #5991ff;
+    --text-white: #ffffff;
+    --text-gray: #888;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+/* Fixed Header */
+.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+
+    background: rgba(5, 5, 5, 0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+    color: white;
+    letter-spacing: -1px;
+}
+
+.brand-logo span {
+    color: var(--accent);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover {
+    color: white;
+}
+
+.nav-cta {
+    background: white;
+    color: black !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero-bg-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: var(--accent);
+    filter: blur(150px);
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.name-title {
+    text-align: center;
+    line-height: 0.85;
+    font-size: clamp(3rem, 12vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.name-title span {
+    background: linear-gradient(to bottom, #fff, var(--text-gray));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Section Styling */
+.section { 
+    padding: 60px 0; /* Reduzido pela metade para diminuir o gap */
+}
+
+.section-compact {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+
+.section-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Generator Styling */
+.prompt-box {
+    background: #111;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #222;
+}
+
+.input-wrapper { display: flex; align-items: center; gap: 15px; padding-left: 15px; }
+
+input {
+    background: transparent;
+    border: none;
+    color: white;
+    flex: 1;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.btn-generate {
+    background: var(--accent);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.response-container {
+    margin-top: 30px;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 30px;
+    min-height: 150px;
+}
+
+.loader {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Workflow Styles */
+.workflow-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza as setas no mobile */
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.flow-block:hover {
+    border-color: var(--accent);
+    background: rgba(182, 89, 255, 0.05);
+}
+
+.flow-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--text-white);
+}
+
+.flow-content p {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.flow-content code {
+    color: var(--accent-blue);
+    background: rgba(0,0,0,0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.flow-block {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(182, 89, 255, 0.1);
+    width: 100%; /* Ocupa tudo no mobile */
+    transition: 0.3s;
+}
+
+.flow-icon {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-right: 20px;
+    min-width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flow-arrow {
+    font-size: 1.5rem;
+    color: var(--accent);
+    opacity: 0.5;
+    transform: rotate(90deg); /* Aponta para baixo no mobile */
+}
+
+/* Instagram-like Mockup Styling */
+.insta-mockup {
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border: 1px solid #222;
+    text-align: left;
+}
+
+.mockup-header {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+}
+
+.mockup-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    background: #111;
+}
+
+.mockup-footer {
+    padding: 15px;
+}
+
+.post-title { margin-bottom: 5px; }
+.post-desc { font-size: 0.85rem; color: #ccc; margin-bottom: 10px; }
+.post-hashtags { color: var(--accent-blue); font-size: 0.8rem; }
+
+.action-bar {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    border-top: 1px solid #222;
+    padding-top: 15px;
+}
+
+.btn-action {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Remove o fundo branco/amarelo do preenchimento automático */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #111 inset !important; /* Mesma cor do seu .prompt-box */
+    -webkit-text-fill-color: white !important; /* Mantém o texto branco */
+    transition: background-color 5000s ease-in-out 0s; /* Truque extra para evitar que a cor volte */
+}
+
+/* Garante que o ícone de estrelas não suma */
+.input-wrapper i {
+    z-index: 2;
+}
+
+.btn-action:hover { background: #252525; }
+
+.bi-stars {
+    filter: drop-shadow(0 0 5px var(--accent));
+    animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Responsividade: No Desktop, as setas podem ficar de lado */
+@media (min-width: 992px) {
+    .workflow-grid {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .flow-block {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 15px;
+        width: auto;
+        flex: 1;
+    }
+
+    .flow-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .flow-arrow {
+        transform: rotate(0deg); /* Aponta para a direita no desktop */
+        margin: 0 10px;
+    }
+}
