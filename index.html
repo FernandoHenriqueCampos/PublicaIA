@@ -90,28 +90,214 @@
         </div>
     </section>
 
-    <section id="generate" class="section generator-section">
-        <div class="container">
-            <h2 class="section-title"><i class="bi bi-terminal-fill"></i> AI Prompt Lab</h2>
+    <!-- ============================================================
+     SUBSTITUA apenas a section#generate no seu index.html
+     por este bloco completo
+     ============================================================ -->
+
+<section id="generate" class="section generator-section">
+    <div class="container">
+        <h2 class="section-title"><i class="bi bi-terminal-fill"></i> AI Prompt Lab</h2>
+
+        <div class="prompt-lab-container">
+
+            <!-- INPUT PRINCIPAL -->
             <div class="prompt-box">
                 <div class="input-wrapper">
                     <i class="bi bi-stars"></i>
-                    <input type="text" id="user-input" placeholder="Type your brand idea (e.g., McDonald's Mac & Cheese)...">
+                    <textarea id="user-input" placeholder="Type your brand idea (e.g., Artisan Burger, Iced Coffee...)..." rows="1"></textarea>
                     <button class="btn-generate" onclick="generatePost()">
                         Run AI <i class="bi bi-play-fill"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="response-container" id="response-box">
-                <div class="status-indicator">
-                    <i class="bi bi-layer-forward"></i>
-                    <span id="status-text">System Ready...</span>
+            <!-- TOGGLE ADVANCED -->
+            <div class="advanced-toggle" id="advanced-toggle-btn" onclick="toggleAdvanced()">
+                <i class="bi bi-sliders"></i>
+                <span id="toggle-label">Advanced Settings</span>
+                <i class="bi bi-chevron-down" id="toggle-chevron"></i>
+            </div>
+
+            <!-- PAINEL ADVANCED -->
+            <div id="advanced-fields" class="hidden advanced-panel">
+
+                <!-- LINHA 1: Estilo Visual + Iluminação -->
+                <div class="adv-row">
+                    <div class="adv-field">
+                        <label class="adv-label">
+                            <i class="bi bi-palette2"></i> Visual Style
+                        </label>
+                        <div class="tag-selector" id="style-tags">
+                            <button class="tag active" data-val="photorealistic">Photorealistic</button>
+                            <button class="tag" data-val="cinematic">Cinematic</button>
+                            <button class="tag" data-val="editorial">Editorial</button>
+                            <button class="tag" data-val="minimalist">Minimalist</button>
+                            <button class="tag" data-val="dark moody">Dark Moody</button>
+                            <button class="tag" data-val="bright & airy">Bright & Airy</button>
+                        </div>
+                    </div>
+
+                    <div class="adv-field">
+                        <label class="adv-label">
+                            <i class="bi bi-brightness-high"></i> Lighting
+                        </label>
+                        <div class="tag-selector" id="lighting-tags">
+                            <button class="tag active" data-val="studio lighting">Studio</button>
+                            <button class="tag" data-val="natural light">Natural</button>
+                            <button class="tag" data-val="golden hour">Golden Hour</button>
+                            <button class="tag" data-val="neon lighting">Neon</button>
+                            <button class="tag" data-val="side lighting with shadows">Side + Shadow</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="ai-output" id="output-content"></div>
+
+                <!-- LINHA 2: Ângulo + Background -->
+                <div class="adv-row">
+                    <div class="adv-field">
+                        <label class="adv-label">
+                            <i class="bi bi-camera"></i> Shot Angle
+                        </label>
+                        <div class="tag-selector" id="angle-tags">
+                            <button class="tag active" data-val="close-up macro shot">Close-up</button>
+                            <button class="tag" data-val="top-down flat lay">Top-down</button>
+                            <button class="tag" data-val="45 degree angle">45°</button>
+                            <button class="tag" data-val="eye level shot">Eye Level</button>
+                            <button class="tag" data-val="wide establishing shot">Wide</button>
+                        </div>
+                    </div>
+
+                    <div class="adv-field">
+                        <label class="adv-label">
+                            <i class="bi bi-image"></i> Background
+                        </label>
+                        <div class="tag-selector" id="bg-tags">
+                            <button class="tag active" data-val="clean dark background">Dark</button>
+                            <button class="tag" data-val="white background">White</button>
+                            <button class="tag" data-val="marble surface">Marble</button>
+                            <button class="tag" data-val="rustic wood table">Wood</button>
+                            <button class="tag" data-val="blurred bokeh background">Bokeh</button>
+                            <button class="tag" data-val="urban street background">Urban</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LINHA 3: Prompts manuais -->
+                <div class="adv-row adv-row-col">
+                    <div class="adv-field full-width">
+                        <label class="adv-label">
+                            <i class="bi bi-plus-circle"></i> Positive Prompt Override
+                            <span class="adv-hint">Extra details added to the image prompt</span>
+                        </label>
+                        <div class="adv-input-box">
+                            <input type="text" id="positive-override"
+                                placeholder="e.g., sesame seeds, smoke, golden reflections...">
+                        </div>
+                    </div>
+
+                    <div class="adv-field full-width">
+                        <label class="adv-label">
+                            <i class="bi bi-dash-circle"></i> Negative Prompt Override
+                            <span class="adv-hint">Things to explicitly remove from the image</span>
+                        </label>
+                        <div class="adv-input-box adv-input-neg">
+                            <input type="text" id="negative-override"
+                                placeholder="e.g., blurry, cartoon, multiple items, text...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LINHA 4: Sliders técnicos -->
+                <div class="adv-row adv-sliders-row">
+                    <div class="adv-field">
+                        <label class="adv-label">
+                            <i class="bi bi-bullseye"></i> Prompt Fidelity
+                            <span class="adv-hint">Guidance scale (7–12)</span>
+                        </label>
+                        <div class="slider-group">
+                            <input type="range" id="guidance-scale" min="5" max="15" step="0.5" value="7.5"
+                                oninput="document.getElementById('guidance-val').textContent = this.value">
+                            <span class="slider-val" id="guidance-val">7.5</span>
+                        </div>
+                    </div>
+
+                    <div class="adv-field">
+                        <label class="adv-label">
+                            <i class="bi bi-layers"></i> Inference Steps
+                            <span class="adv-hint">Quality vs Speed (20–60)</span>
+                        </label>
+                        <div class="slider-group">
+                            <input type="range" id="inference-steps" min="20" max="60" step="5" value="45"
+                                oninput="document.getElementById('steps-val').textContent = this.value">
+                            <span class="slider-val" id="steps-val">45</span>
+                        </div>
+                    </div>
+
+                    <div class="adv-field">
+                        <label class="adv-label">
+                            <i class="bi bi-aspect-ratio"></i> Aspect Ratio
+                        </label>
+                        <div class="ratio-selector" id="ratio-tags">
+                            <button class="ratio-btn active" data-val="1:1">1:1</button>
+                            <button class="ratio-btn" data-val="4:5">4:5</button>
+                            <button class="ratio-btn" data-val="16:9">16:9</button>
+                            <button class="ratio-btn" data-val="9:16">9:16</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LINHA 5: Idioma + Tom de Texto -->
+                <div class="adv-row">
+                    <div class="adv-field">
+                        <label class="adv-label">
+                            <i class="bi bi-translate"></i> Copy Language
+                        </label>
+                        <div class="tag-selector" id="lang-tags">
+                            <button class="tag active" data-val="pt-BR">🇧🇷 Português</button>
+                            <button class="tag" data-val="en-US">🇺🇸 English</button>
+                            <button class="tag" data-val="es-ES">🇪🇸 Español</button>
+                        </div>
+                    </div>
+
+                    <div class="adv-field">
+                        <label class="adv-label">
+                            <i class="bi bi-chat-quote"></i> Copy Tone
+                        </label>
+                        <div class="tag-selector" id="tone-tags">
+                            <button class="tag active" data-val="luxury & premium">Luxury</button>
+                            <button class="tag" data-val="casual & fun">Casual</button>
+                            <button class="tag" data-val="urgency & FOMO">Urgency</button>
+                            <button class="tag" data-val="informative">Informative</button>
+                            <button class="tag" data-val="emotional storytelling">Emotional</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PREVIEW do prompt que será enviado -->
+                <div class="prompt-preview">
+                    <div class="prompt-preview-header">
+                        <i class="bi bi-code-slash"></i>
+                        <span>Live Prompt Preview</span>
+                        <button class="btn-reset-adv" onclick="resetAdvanced()">
+                            <i class="bi bi-arrow-counterclockwise"></i> Reset
+                        </button>
+                    </div>
+                    <p id="prompt-preview-text" class="prompt-preview-text">Fill in the options above to see the generated prompt...</p>
+                </div>
+
             </div>
         </div>
-    </section>
+
+        <!-- OUTPUT -->
+        <div class="response-container" id="response-box">
+            <div class="status-indicator">
+                <i class="bi bi-layer-forward"></i>
+                <span id="status-text">System Ready...</span>
+            </div>
+            <div class="ai-output" id="output-content"></div>
+        </div>
+    </div>
+</section>
 
     <script src="script.js"></script>
 </body>
